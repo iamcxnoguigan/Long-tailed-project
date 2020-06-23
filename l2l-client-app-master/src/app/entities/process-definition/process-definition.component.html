@@ -1,0 +1,64 @@
+<div>
+  <h2>
+    <span id="process-definition-page-heading" jhiTranslate="processDefinition.title"></span>
+    <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
+      <fa-icon [icon]="'plus'"></fa-icon> <span >Start a new Process Instance</span>
+    </button>
+  </h2>
+  <jhi-alert></jhi-alert>
+  <div class="table-responsive" *ngIf="definitions">
+    <table class="table table-striped">
+      <thead>
+      <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+        <th jhiSortBy="id"><span jhiTranslate="processDefinition.detail.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="applicationName"><span jhiTranslate="processDefinition.detail.app.name"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="appVersion"><span jhiTranslate="processDefinition.detail.app.version"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="serviceFullName"> <span jhiTranslate="processDefinition.detail.service.fullName"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="serviceType"><span jhiTranslate="processDefinition.detail.service.type"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="serviceVersion"><span jhiTranslate="processDefinition.detail.service.version"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="key"><span jhiTranslate="processDefinition.detail.key"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="version"><span jhiTranslate="processDefinition.detail.version"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th ><span jhiTranslate="processDefinition.actions">Operations</span></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody *ngIf ="definitions">
+      <tr *ngFor="let definition of definitions; trackBy: trackIdentity">
+        <td><a [routerLink]="['./new']">{{definition.id}}</a></td>
+        <td>{{definition.appName}}</td>
+        <td>{{definition.appVersion}}</td>
+        <td>{{definition.serviceFullName}}</td>
+        <td>{{definition.serviceType}}</td>
+        <td>{{definition.serviceVersion}}</td>
+        <td>{{definition.key}}</td>
+        <td>{{definition.version}}</td>
+        <td class="text-right">
+          <div class="btn-group flex-btn-group-container">
+            <button type="submit"
+                    [routerLink]="['./new']"
+                    class="btn btn-info btn-sm">
+              <fa-icon [icon]="'eye'"></fa-icon>
+              <span class="d-none d-md-inline" jhiTranslate="processDefinition.detail.actions.view">View</span>
+            </button>
+            <div class="btn-group flex-btn-group-container">
+              <button type="submit"
+                      [routerLink]="['./' ,definition.id, 'start']"
+                      class="btn btn-info btn-sm">
+                <fa-icon [icon]="['fas', 'play']"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="processDefinition.detail.actions.start">Start</span>
+              </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="definitions">
+    <div class="row justify-content-center">
+      <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+    </div>
+    <div class="row justify-content-center">
+      <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+    </div>
+  </div>
+</div>

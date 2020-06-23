@@ -1,0 +1,67 @@
+{
+  "runtimeBundle" : {
+    "title" : "RuntimeBundle"
+  },
+  "processInstance":{
+    "title" : "流程实例",
+    "applicationName": "应用域",
+    "status": "状态",
+    "processDefinitionId": "流程定义ID",
+    "startDate": "启动日期",
+    "lastModifiedDate": "最近修改",
+    "actions": {
+      "start": "启动流程实例",
+      "operation": "操作"
+    }
+  },
+  "processDefinition": {
+    "title": "ProcessDefinitions",
+    "detail": {
+        "id": "ID",
+        "app": {
+          "name": "应用名称",
+          "version": "应用版本"
+        },
+        "service": {
+          "fullName": "服务全名",
+          "type": "服务类型",
+          "version": "服务版本"
+        },
+        "businessKey": "业务关键字",
+        "version": "流程定义版本",
+        "actions": {
+          "view": "查看",
+          "start": "启动"
+        }
+      },
+    "actions": "操作"
+  },
+  "task":{
+    "name" :"名称",
+    "assignee" :"指派",
+    "createdDate" :"创建时间",
+    "processDefinitionId" : "流程定义Id",
+    "processInstanceId" : "流程实例Id",
+    "status" :"状态",
+    "title" : "任务",
+    "detail": {
+      "id": "ID",
+      "app": {
+        "name": "应用名称",
+        "version": "应用版本"
+      },
+      "service": {
+        "fullName": "服务全名",
+        "type": "服务类型",
+        "version": "服务版本"
+      },
+      "businessKey": "业务关键字",
+      "version": "任务版本",
+      "actions": {
+        "view": "查看",
+        "complete": "完成"
+      }
+    },
+    "actions": "Operations"
+  }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0rxf59j" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.0">
+  <bpmn:process id="Process_0o46lmu" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0ej2lxe</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_0whnn0u">
+      <bpmn:incoming>SequenceFlow_0ej2lxe</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0vywit4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0ej2lxe" sourceRef="StartEvent_1" targetRef="Task_0whnn0u" />
+    <bpmn:endEvent id="EndEvent_1v5onu8">
+      <bpmn:incoming>SequenceFlow_0vywit4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0vywit4" sourceRef="Task_0whnn0u" targetRef="EndEvent_1v5onu8" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0o46lmu">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0whnn0u_di" bpmnElement="Task_0whnn0u">
+        <dc:Bounds x="298" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ej2lxe_di" bpmnElement="SequenceFlow_0ej2lxe">
+        <di:waypoint x="215" y="121" />
+        <di:waypoint x="298" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1v5onu8_di" bpmnElement="EndEvent_1v5onu8">
+        <dc:Bounds x="481" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vywit4_di" bpmnElement="SequenceFlow_0vywit4">
+        <di:waypoint x="398" y="121" />
+        <di:waypoint x="481" y="121" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,69 @@
+{
+    "runtimeBundle" : {
+      "title" : "RuntimeBundle"
+    },
+    "processInstance":{
+      "title" : "Instances",
+      "applicationName": "Application Name",
+      "status": "Status",
+      "processDefinitionId": "ProcessDefinition ID",
+      "startDate": "Start Date",
+      "lastModifiedDate": "Last Modified Date",
+      "actions": {
+        "start": "Start a new Instance",
+        "operation": "Operations"
+      }
+    },
+    "processDefinition": {
+      "title": "ProcessDefinitions",
+      "detail": {
+        "id": "Id",
+        "app": {
+          "name": "appName",
+          "version": "appVersion"
+        },
+        "service": {
+          "fullName": "serviceFullName",
+          "type": "serviceType",
+          "version": "serviceVersion"
+        },
+        "businessKey": "businessKey",
+        "version": "definitionVersion",
+        "key": "myProcess_1",
+        "actions": {
+          "view": "View",
+          "start": "Start"
+        }
+      },
+      "actions" : "Operation"
+    },
+    "task":{
+      "name" :"name",
+      "assignee" :"assignee",
+      "createdDate" :"createdDate",
+      "title" : "Tasks",
+      "processDefinitionId" : "processDefinitionId",
+      "processInstanceId" : "processInstanceId",
+      "status" :"status",
+      "detail": {
+        "id": "Id",
+        "app": {
+          "name": "appName",
+          "version": "appVersion"
+        },
+        "service": {
+          "fullName": "serviceFullName",
+          "type": "serviceType",
+          "version": "serviceVersion"
+        },
+        "businessKey": "businessKey",
+        "version": "definitionVersion",
+        "key": "myProcess_1",
+        "actions": {
+          "view": "View",
+          "Start": "Start"
+        }
+      },
+      "actions": "Operations"
+    }
+}

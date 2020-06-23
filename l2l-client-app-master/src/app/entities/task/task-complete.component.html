@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <h1 id="activitiForm">
+      UserTask Complete Form
+    </h1>
+    <l2l-activiti-form [formDefinition]="taskFormDefinition"></l2l-activiti-form>
+    <p *ngIf="taskFormDefinition" >
+      <label>Filed[0] Value : </label> <label style="color: #dc3545">{{taskFormDefinition.fields[0].value}}</label></p>
+    <button type="button" class="btn btn-secondary" (click)="previousState()">
+      <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+    </button>
+    <button type="submit"  class="btn btn-primary">
+      <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>complete</span>
+    </button>
+  </div>
+  </div>
+</div>
+
+

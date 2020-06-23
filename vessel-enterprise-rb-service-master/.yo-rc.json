@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.l2l.enterprise.vessel",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "microservice",
+    "baseName": "vessel",
+    "packageName": "com.l2l.enterprise.vessel",
+    "packageFolder": "com/l2l/enterprise/vessel",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTdmNWY5ZjhhYmM0ZWE3N2UwZGNmMmVmNjU4OWUwNjlkMjc5NTk0YjhlNDk2YWNkMjNlNzQwOThlYjc3YTI1ODBjNWQ0NzQ0NmZhMDhhMTJkMmIxNjY0YTMwOWVhMWZmMjcyZDRmMzMxYWE3YmY2YjE5OWI0N2M4ZGIxZTNhMjM=",
+    "enableTranslation": true,
+    "languages": [
+      "en",
+      "zh-cn"
+    ],
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

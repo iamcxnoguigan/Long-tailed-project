@@ -1,0 +1,59 @@
+<div>
+  <h2>
+    <span id="user-management-page-heading" jhiTranslate="processInstance.title"></span>
+    <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['/process-definitions']">
+      <fa-icon [icon]="'plus'"></fa-icon> <span jhiTranslate="processInstance.actions.start">Start a new Instance</span>
+    </button>
+  </h2>
+  <jhi-alert></jhi-alert>
+  <div class="table-responsive" *ngIf="instances">
+    <table class="table table-striped">
+      <thead>
+      <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
+        <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="applicationName"><span jhiTranslate="processInstance.applicationName">Application Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="status"><span jhiTranslate="processInstance.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="processDefinitionId"> <span jhiTranslate="processInstance.processDefinitionId">processDefinitionId</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="startDate"><span jhiTranslate="processInstance.startDate">Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="lastModified"><span jhiTranslate="processInstance.lastModifiedDate">Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th ><span jhiTranslate="processInstance.actions.operation">Operations</span></th>
+      </tr>
+      </thead>
+      <tbody *ngIf ="instances">
+      <tr *ngFor="let instance of instances; trackBy: trackIdentity">
+        <td><a [routerLink]="['./view']">{{instance.id}}</a></td>
+        <td>{{instance.applicationName}}</td>
+        <td>{{instance.status}}</td>
+        <td>{{instance.processDefinitionId}}</td>
+        <td>{{instance.startDate| date:'dd/MM/yy HH:mm'}}</td>
+        <td>{{instance.lastModified | date:'dd/MM/yy HH:mm'}}</td>
+        <td class="text-right">
+          <div class="btn-group flex-btn-group-container">
+            <button type="submit"
+                    [routerLink]="['./view']"
+                    class="btn btn-info btn-sm">
+              <fa-icon [icon]="'eye'"></fa-icon>
+              <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+            </button>
+            <button type="submit"
+                    [routerLink]="['./edit']"
+                    queryParamsHandling="merge"
+                    class="btn btn-primary btn-sm">
+              <fa-icon [icon]="'pencil-alt'"></fa-icon>
+              <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="instances">
+    <div class="row justify-content-center">
+      <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+    </div>
+    <div class="row justify-content-center">
+      <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+    </div>
+  </div>
+</div>

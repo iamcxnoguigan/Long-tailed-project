@@ -1,0 +1,13 @@
+<form name="activitiForm" role="form" novalidate #activitiForm="ngForm">
+  <div *ngIf="formDefinition">
+    <l2l-alert-error></l2l-alert-error>
+
+    <div  *ngFor="let field of formDefinition.fields">
+      <div class="form-group" *ngIf="field.type == 'string'" [hidden]="!field.id">
+        <h3><label style="color:blue">{{field.name}} : </label></h3>
+        <input type="text" class="form-control" name="id"
+               [(ngModel)]="field.value">
+      </div>
+    </div>
+  </div>
+</form>

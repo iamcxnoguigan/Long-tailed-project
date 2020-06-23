@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+                  xmlns:l2l="http://www.l2l.com"  id="Definitions_145veky"
+                  targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.0">
+  <bpmn:collaboration id="Collaboration_0z4e2bc">
+    <bpmn:participant id="Participant_1xb8fnp" name="logistics" processRef="Process_05bsak3" />
+  </bpmn:collaboration>
+  <bpmn:process id="logistics" isExecutable="true">
+    <bpmn:task id="Task_0mmydno" name="Deliver muffin">
+      <bpmn:incoming>SequenceFlow_1adbq8c</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0zcx7n3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_054f5rr" name=" Check muffin">
+        <bpmn:extensionElements>
+            <l2l:annotation id="Logistics,time"  name="value" implementationType="globalType" pointcutType="PreProcessor" destination="annotationConsumer" iftttRules=""  type="LI" constraints="[LogisricsLICons]">
+            </l2l:annotation>
+        </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0zcx7n3</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_06n26o8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_0mokm93" name="Arrange for delivery">
+      <bpmn:incoming>SequenceFlow_16263vy</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1em5ae8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:startEvent id="StartEvent_1d4yon8">
+      <bpmn:outgoing>SequenceFlow_16263vy</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_1b8weeq" name="Muffin dispatching">
+        <bpmn:extensionElements>
+            <l2l:annotation id="Logistics"  name="value" implementationType="globalType" pointcutType="PreProcessor" destination="annotationConsumer" iftttRules="" valueExchange="[(name:DR2LC),(input,DR),(url,localhost:9002/VDML)]" type="LC" constraints="[LogisricsLCCons]">
+            </l2l:annotation>
+        </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1em5ae8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1svk8d9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_0aeys99" name="Prepare for bulk transportation/Prepare for ordinary delivery/Prepare for special delivery">
+      <bpmn:incoming>SequenceFlow_1svk8d9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1adbq8c</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_17iykqz" name="Charge for fee">
+        <bpmn:extensionElements>
+            <l2l:annotation id="Logistics,loc,time"  name="value" implementationType="globalType" pointcutType="PreProcessor" destination="annotationConsumer" iftttRules=""  type="AR" constraints="[LogisricsARCons]">
+            </l2l:annotation>
+        </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0flc8i6</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1d1vp70</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_1qid0ev" name="Accepted">
+      <bpmn:incoming>SequenceFlow_06n26o8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0flc8i6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_06nn2l6" name="paid">
+      <bpmn:incoming>SequenceFlow_1d1vp70</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0rngy5h</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_0kmco6p">
+      <bpmn:incoming>SequenceFlow_0rngy5h</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_16263vy" sourceRef="StartEvent_1d4yon8" targetRef="Task_0mokm93" />
+    <bpmn:sequenceFlow id="SequenceFlow_0zcx7n3" sourceRef="Task_0mmydno" targetRef="Task_054f5rr" />
+    <bpmn:sequenceFlow id="SequenceFlow_1em5ae8" sourceRef="Task_0mokm93" targetRef="Task_1b8weeq" />
+    <bpmn:sequenceFlow id="SequenceFlow_1svk8d9" sourceRef="Task_1b8weeq" targetRef="Task_0aeys99" />
+    <bpmn:sequenceFlow id="SequenceFlow_1adbq8c" sourceRef="Task_0aeys99" targetRef="Task_0mmydno" />
+    <bpmn:sequenceFlow id="SequenceFlow_06n26o8" sourceRef="Task_054f5rr" targetRef="Task_1qid0ev" />
+    <bpmn:sequenceFlow id="SequenceFlow_0flc8i6" sourceRef="Task_1qid0ev" targetRef="Task_17iykqz" />
+    <bpmn:sequenceFlow id="SequenceFlow_1d1vp70" sourceRef="Task_17iykqz" targetRef="Task_06nn2l6" />
+    <bpmn:sequenceFlow id="SequenceFlow_0rngy5h" sourceRef="Task_06nn2l6" targetRef="EndEvent_0kmco6p" />
+    <bpmn:textAnnotation id="TextAnnotation_1kkv5ud">
+      <bpmn:text>if: Traffic()  then:IOT:Traffic:DeliveryTopic
+url:localhost:9001/IOT/traffic</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1awmjzg">
+      <bpmn:text>Type:LI(Logistics information) Constraints:[LI.CC &gt;= 95% ,DR.LT &gt;= 0]</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_09x0mva">
+      <bpmn:text>Type:AR(accounts receivable) Constraints:[AR.Cost &lt;60 ,AR.ER(LC.RC(loc,time)) &gt; 80]</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0nh5m7b">
+      <bpmn:text>ValueExchange:[(name:DR2LC),(input,DR),(url,localhost:9002/VDML)]
+Type:LC(Logistics cost) Constraints:[LC.Cost(loc,time) + LC.RC(loc,time) &lt; 70  ]</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0aipz7m" sourceRef="Task_0mmydno" targetRef="TextAnnotation_1kkv5ud" />
+    <bpmn:association id="Association_1ogsc0q" sourceRef="Task_054f5rr" targetRef="TextAnnotation_1awmjzg" />
+    <bpmn:association id="Association_14nf7ph" sourceRef="Task_17iykqz" targetRef="TextAnnotation_09x0mva" />
+    <bpmn:association id="Association_1thspoc" sourceRef="Task_1b8weeq" targetRef="TextAnnotation_0nh5m7b" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0z4e2bc">
+      <bpmndi:BPMNShape id="Participant_1xb8fnp_di" bpmnElement="Participant_1xb8fnp" isHorizontal="true">
+        <dc:Bounds x="156" y="81" width="1554" height="354" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0mmydno_di" bpmnElement="Task_0mmydno">
+        <dc:Bounds x="829" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_054f5rr_di" bpmnElement="Task_054f5rr">
+        <dc:Bounds x="974" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0mokm93_di" bpmnElement="Task_0mokm93">
+        <dc:Bounds x="293" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0aeys99_di" bpmnElement="Task_0aeys99">
+        <dc:Bounds x="613" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_17iykqz_di" bpmnElement="Task_17iykqz">
+        <dc:Bounds x="1269" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1kkv5ud_di" bpmnElement="TextAnnotation_1kkv5ud">
+        <dc:Bounds x="835" y="307" width="240" height="43" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1awmjzg_di" bpmnElement="TextAnnotation_1awmjzg">
+        <dc:Bounds x="1100" y="333" width="172" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_09x0mva_di" bpmnElement="TextAnnotation_09x0mva">
+        <dc:Bounds x="1100" y="84" width="188" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0nh5m7b_di" bpmnElement="TextAnnotation_0nh5m7b">
+        <dc:Bounds x="397" y="319" width="184" height="96" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_16263vy_di" bpmnElement="SequenceFlow_16263vy">
+        <di:waypoint x="262" y="230" />
+        <di:waypoint x="293" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0zcx7n3_di" bpmnElement="SequenceFlow_0zcx7n3">
+        <di:waypoint x="929" y="230" />
+        <di:waypoint x="974" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0aipz7m_di" bpmnElement="Association_0aipz7m">
+        <di:waypoint x="910" y="270" />
+        <di:waypoint x="939" y="307" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ogsc0q_di" bpmnElement="Association_1ogsc0q">
+        <di:waypoint x="1070" y="268" />
+        <di:waypoint x="1150" y="333" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_14nf7ph_di" bpmnElement="Association_14nf7ph">
+        <di:waypoint x="1308" y="190" />
+        <di:waypoint x="1203" y="138" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_0iqs81v_di" bpmnElement="StartEvent_1d4yon8">
+        <dc:Bounds x="226" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-392" y="170" width="69" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1b8weeq_di" bpmnElement="Task_1b8weeq">
+        <dc:Bounds x="413" y="189" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1em5ae8_di" bpmnElement="SequenceFlow_1em5ae8">
+        <di:waypoint x="393" y="230" />
+        <di:waypoint x="403" y="230" />
+        <di:waypoint x="403" y="229" />
+        <di:waypoint x="413" y="229" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1svk8d9_di" bpmnElement="SequenceFlow_1svk8d9">
+        <di:waypoint x="513" y="229" />
+        <di:waypoint x="563" y="229" />
+        <di:waypoint x="563" y="230" />
+        <di:waypoint x="613" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1thspoc_di" bpmnElement="Association_1thspoc">
+        <di:waypoint x="471" y="269" />
+        <di:waypoint x="480" y="319" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1adbq8c_di" bpmnElement="SequenceFlow_1adbq8c">
+        <di:waypoint x="713" y="230" />
+        <di:waypoint x="829" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_1qid0ev_di" bpmnElement="Task_1qid0ev">
+        <dc:Bounds x="1119" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_06n26o8_di" bpmnElement="SequenceFlow_06n26o8">
+        <di:waypoint x="1074" y="230" />
+        <di:waypoint x="1119" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0flc8i6_di" bpmnElement="SequenceFlow_0flc8i6">
+        <di:waypoint x="1219" y="230" />
+        <di:waypoint x="1269" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_06nn2l6_di" bpmnElement="Task_06nn2l6">
+        <dc:Bounds x="1419" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1d1vp70_di" bpmnElement="SequenceFlow_1d1vp70">
+        <di:waypoint x="1369" y="230" />
+        <di:waypoint x="1419" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0kmco6p_di" bpmnElement="EndEvent_0kmco6p">
+        <dc:Bounds x="1569" y="212" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0rngy5h_di" bpmnElement="SequenceFlow_0rngy5h">
+        <di:waypoint x="1519" y="230" />
+        <di:waypoint x="1569" y="230" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

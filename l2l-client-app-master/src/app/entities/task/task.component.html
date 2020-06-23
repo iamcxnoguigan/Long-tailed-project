@@ -1,0 +1,53 @@
+<div>
+  <h2>
+    <span id="user-management-page-heading" jhiTranslate="task.title"></span>
+  </h2>
+  <jhi-alert></jhi-alert>
+  <div class="table-responsive" *ngIf="tasks">
+    <table class="table table-striped">
+      <thead>
+      <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
+        <th jhiSortBy="id"><span jhiTranslate="task.detail.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="assignee"><span jhiTranslate="task.assignee"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="createdDate"><span jhiTranslate="task.createdDate"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="name"><span jhiTranslate="task.name"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="processInstanceId"> <span jhiTranslate="task.processInstanceId"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th jhiSortBy="status"><span jhiTranslate="task.status"></span> <fa-icon [icon]="'sort'"></fa-icon></th>
+        <th ><span jhiTranslate="task.actions">Operations</span></th>
+      </tr>
+      </thead>
+      <tbody *ngIf ="tasks">
+      <tr *ngFor="let task of tasks; trackBy: trackIdentity">
+        <td><a [routerLink]="['./task']">{{task.id}}</a></td>
+        <!--<td>{{task.appName}}</td>-->
+        <!--<td>{{task.serviceVersion}}</td>-->
+        <td>{{task.assignee}}</td>
+        <td>{{task.createdDate| date:'dd/MM/yy HH:mm'}}</td>
+        <td>{{task.name}}</td>
+        <!--<td>{{task.processDefinitionId}}</td>-->
+        <td>{{task.processInstanceId}}</td>
+        <!--<td>{{task.serviceType}}</td>-->
+        <td>{{task.status}}</td>
+        <td class="text-right">
+          <div class="btn-group flex-btn-group-container">
+            <button type="submit"
+                    [routerLink]="['./',task.id,'complete']"
+                    class="btn btn-info btn-sm">
+              <fa-icon [icon]="'eye'"></fa-icon>
+              <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="tasks">
+    <div class="row justify-content-center">
+      <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+    </div>
+    <div class="row justify-content-center">
+      <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+    </div>
+  </div>
+</div>

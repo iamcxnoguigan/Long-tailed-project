@@ -1,0 +1,32 @@
+{
+    "id": "GetVesselSchedulerInfo",
+    "name" : "GetVesselSchedulerInfo",
+    "pointcut": "PreProcessor",
+    "inputVars":[
+        {
+            "name":"vid",
+            "type":"string"
+        }
+    ],
+    "outputVars":[
+        {
+            "name":"voyagingEndTime",
+            "type":"date"
+        },
+        {
+            "name":"anchoringEndTime",
+            "type":"date"
+        },
+        {
+            "name":"dockingEndTime",
+            "type":"date"
+        }
+    ],
+    "policy":{
+        "id":"VesselSchedulerInfoPolicy",
+        "url":"localhost:8080/policies",
+        "executor": {
+            "url" : "localhost:8080/services/Id"
+        }
+    }
+}

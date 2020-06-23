@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.l2l.coordinator.vmc",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "microservice",
+    "baseName": "VesselManagerCoordinator",
+    "packageName": "com.l2l.coordinator.vmc",
+    "packageFolder": "com/l2l/coordinator/vmc",
+    "serverPort": "8082",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "Yzg1NjdiOWMxM2I2YjQ3YmUwZTAyNWI0ODU0MGRhOTYyY2FlZTU4ZTkxNDI5YTM2MjQ5MTFmMWNhZDdlYzA4MTllZWNiYmRkMzhmNmJiZWU0M2RhZjFlM2YyN2U4MjNkZDk2MzZjODM2ZGVkMzQxYzE0YjVhM2YzMGVjOWEzZmY=",
+    "enableTranslation": true,
+    "languages": [
+      "en",
+      "zh-cn"
+    ],
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

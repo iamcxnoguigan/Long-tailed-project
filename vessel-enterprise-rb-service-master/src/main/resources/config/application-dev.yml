@@ -1,0 +1,243 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# More information on profiles: https://www.jhipster.tech/profiles/
+# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+logging:
+    level:
+        ROOT: DEBUG
+        io.github.jhipster: DEBUG
+        com.l2l.enterprise.vessel: DEBUG
+
+eureka:
+    instance:
+        prefer-ip-address: true
+    client:
+        service-url:
+            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+
+spring:
+    profiles:
+        active: dev
+        include:
+            - swagger
+            # Uncomment to activate TLS for the dev profile
+            #- tls
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use Webpack dev server + BrowserSync for livereload
+    jackson:
+        serialization.indent_output: true
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:h2:file:./build/h2db/db/vessel;DB_CLOSE_DELAY=-1
+        username: vessel
+        password:
+        hikari:
+            auto-commit: false
+#        initialization-mode: always
+    h2:
+        console:
+            enabled: true
+    jpa:
+        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
+        database: H2
+        show-sql: true
+        properties:
+            hibernate.id.new_generator_mappings: true
+            hibernate.connection.provider_disables_autocommit: true
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+            hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+            hibernate.cache.hazelcast.instance_name: vessel
+            hibernate.cache.use_minimal_puts: true
+            hibernate.cache.hazelcast.use_lite_member: true
+    liquibase:
+        contexts: dev
+    mail:
+        host: localhost
+        port: 25
+        username:
+        password:
+    messages:
+        cache-duration: PT1S # 1 second, see the ISO 8601 standard
+    thymeleaf:
+        cache: false
+    zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
+        base-url: http://localhost:9411
+        enabled: false
+        locator:
+            discovery:
+                enabled: true
+    cloud:
+        refresh:
+            enabled: false
+        stream:
+            bindings:
+                delayServiceConfirm:
+                    destination: delayServiceConfirm
+                    contentType: application/json
+                    group: integration #@ no tested
+                delayDestinationUpdate:
+                    destination: delayDestinationUpdate
+                    contentType: application/json
+                    group: integration #@ no tested
+                delaymsgConsumer:
+                    destination: delaymsgConsumer
+                    contentType: application/json
+                    group: integration #@ no tested
+                auditProducer:
+                    destination: ${ACT_RB_AUDIT_PRODUCER_DEST:engineEvents} # destination corresponds to Kafka's topic or exchanges pf RabbitMQ
+                    contentType: ${ACT_RB_AUDIT_PRODUCER_CONTENT_TYPE:application/json}
+                commandResults:
+                    destination: ${ACT_RB_COMMAND_RESULTS_DEST:commandResults}
+                    group: ${ACT_RB_COMMAND_RESULTS_GROUP:commandResults}
+                    contentType: ${ACT_RB_COMMAND_RESULTS_CONTENT_TYPE:application/json}
+                commandConsumer:
+                    destination: ${ACT_RB_COMMAND_RESULTS_DEST:commandConsumer}
+                    contentType: ${ACT_RB_COMMAND_RESULTS_CONTENT_TYPE:application/json}
+                AnnotationIntegrationResultsConsumer:
+                    destination: AnnotationIntegrationResultsConsumer
+                    contentType: application/json
+                    group: integration # @XiCheng **left to confirm**
+
+#            binders:  # configure service info of the rabbitmq bound to stream
+#                defaultRabbit:
+#                    type: rabbit
+#                    environment:
+#                        spring:
+#                            rabbitmq:
+#                                host: ${ACT_RABBITMQ_HOST:localhost}
+#                                port: 5672
+#                                username: guest
+#                                password: guest
+#                                virtual-host: /
+    rabbitmq: # also we can add configuration here to bound with message broker.
+      host: ${ACT_RABBITMQ_HOST:localhost}
+      port: 5672
+      username: guest
+      password: guest
+# Campaing Specific Configuration
+campaign:
+    topic: ${CAMPAIGN_TOPIC:activiti}
+    lang: en
+server:
+    port: 8081
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+    http:
+        version: V_1_1 # To use HTTP/2 you will need to activate TLS (see application-tls.yml)
+    cache: # Cache configuration
+        hazelcast: # Hazelcast distributed cache
+            time-to-live-seconds: 3600
+            backup-count: 1
+            management-center: # Full reference is available at: http://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
+                enabled: false
+                update-interval: 3
+                url: http://localhost:8180/mancenter
+    # CORS is disabled by default on microservices, as you should access them through a gateway.
+    # If you want to enable it, please uncomment the configuration below.
+    # cors:
+        # allowed-origins: "*"
+        # allowed-methods: "*"
+        # allowed-headers: "*"
+        # exposed-headers: "Authorization,Link,X-Total-Count"
+        # allow-credentials: true
+        # max-age: 1800
+    security:
+        authentication:
+            jwt:
+                # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+                base64-secret: MTdmNWY5ZjhhYmM0ZWE3N2UwZGNmMmVmNjU4OWUwNjlkMjc5NTk0YjhlNDk2YWNkMjNlNzQwOThlYjc3YTI1ODBjNWQ0NzQ0NmZhMDhhMTJkMmIxNjY0YTMwOWVhMWZmMjcyZDRmMzMxYWE3YmY2YjE5OWI0N2M4ZGIxZTNhMjM=
+                # Token is valid 24 hours
+                token-validity-in-seconds: 86400
+                token-validity-in-seconds-for-remember-me: 2592000
+    mail: # specific JHipster mail property, for standard properties see MailProperties
+        from: vessel@localhost
+        base-url: http://127.0.0.1:8081
+    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+        jmx:
+            enabled: true
+        logs: # Reports Dropwizard metrics in the logs
+            enabled: false
+            report-frequency: 60 # in seconds
+    logging:
+        logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+            enabled: false
+            host: localhost
+            port: 5000
+            queue-size: 512
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:
+
+
+# actuator :
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+  endpoint:
+    health:
+      show-details: always
+    activiti:
+      enabled: true
+
+
+#
+# host,port
+#
+
+org:
+    id: VA1001
+    host: 10.131.245.96
+    port: 9001
+    projectId: vessel-A
+    vmcContextPath: http://10.131.245.96:9041/vmc
+    lvcContextPath: http://10.131.245.96:9044/lvc
+    vdevContextPath: http://10.131.245.96:9051/vesselIoT
+
+
+#
+#repository file
+#
+locations:
+    fileName: locations.csv
+
+#
+#AWSIOT
+#
+awsiot:
+    clientEndpoint: a1cf6tovfozpv3.iot.cn-north-1.amazonaws.com.cn
+    clientId: vessel-enterprise
+    certificateFile: /home/cx/Desktop/devKeys/413362260/certificate.pem.crt
+    privateKeyFile: /home/cx/Desktop/devKeys/413362260/private.pem.key
+    iotSettings: iotSettings.csv

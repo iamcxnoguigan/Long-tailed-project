@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.l2l.gateway",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.3.0",
+    "applicationType": "gateway",
+    "baseName": "Gateway",
+    "packageName": "com.l2l.gateway",
+    "packageFolder": "com/l2l/gateway",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OWZjY2YxYWUxYTcyZjAwNzQzODM1NzJlZjVhMGJhNjU3MjIwYWNiMzFlZGFhN2Y5ZTYzMTQ0NTNkNTBmNzhjNmNhNmU3Y2M5OThlZjgxMDA1NDc1YTRjNzBkODU1MTVlMGM2ZjIzMDE5NTg4MDAwYWVjNTljNjc1MGVjNTY0YjU=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-cn"
+    ]
+  }
+}
