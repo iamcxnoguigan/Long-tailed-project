@@ -94,13 +94,13 @@
 
 "@angular/common@5.2.8":
   version "5.2.8"
-  resolved "http://registry.npmjs.org/@angular/common/-/common-5.2.8.tgz#25c81609305e4cee6734d90c8ff1132ab35f81bf"
+  resolved "https://registry.npmjs.org/@angular/common/-/common-5.2.8.tgz#25c81609305e4cee6734d90c8ff1132ab35f81bf"
   dependencies:
     tslib "^1.7.1"
 
 "@angular/compiler-cli@5.2.8":
   version "5.2.8"
-  resolved "http://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-5.2.8.tgz#49e298dd8d5f7dde54045ff3c1acd9f3ca62e70b"
+  resolved "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-5.2.8.tgz#49e298dd8d5f7dde54045ff3c1acd9f3ca62e70b"
   dependencies:
     chokidar "^1.4.2"
     minimist "^1.2.0"
@@ -109,19 +109,19 @@
 
 "@angular/compiler@5.2.8":
   version "5.2.8"
-  resolved "http://registry.npmjs.org/@angular/compiler/-/compiler-5.2.8.tgz#534315d0c700d57c2eb7cc7fff4f180213c8633f"
+  resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-5.2.8.tgz#534315d0c700d57c2eb7cc7fff4f180213c8633f"
   dependencies:
     tslib "^1.7.1"
 
 "@angular/core@5.2.8":
   version "5.2.8"
-  resolved "http://registry.npmjs.org/@angular/core/-/core-5.2.8.tgz#d2e7657f2c5ce7f050e8f438dcc420c9bebca10a"
+  resolved "https://registry.npmjs.org/@angular/core/-/core-5.2.8.tgz#d2e7657f2c5ce7f050e8f438dcc420c9bebca10a"
   dependencies:
     tslib "^1.7.1"
 
 "@angular/forms@5.2.8":
   version "5.2.8"
-  resolved "http://registry.npmjs.org/@angular/forms/-/forms-5.2.8.tgz#eda3c0ee2cb085581bb9bf8ac3c7b463b082b643"
+  resolved "https://registry.npmjs.org/@angular/forms/-/forms-5.2.8.tgz#eda3c0ee2cb085581bb9bf8ac3c7b463b082b643"
   dependencies:
     tslib "^1.7.1"
 
@@ -223,7 +223,7 @@
 
 "@types/node@*", "@types/node@9.4.7":
   version "9.4.7"
-  resolved "http://registry.npmjs.org/@types/node/-/node-9.4.7.tgz#57d81cd98719df2c9de118f2d5f3b1120dcd7275"
+  resolved "https://registry.npmjs.org/@types/node/-/node-9.4.7.tgz#57d81cd98719df2c9de118f2d5f3b1120dcd7275"
 
 abab@^1.0.4:
   version "1.0.4"
@@ -6313,6 +6313,10 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
+lodash@4.17.19, lodash@^4, lodash@^4.0.0, lodash@^4.0.1, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.5.1, lodash@~4.17.4:
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+
 lodash@4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
@@ -6320,10 +6324,6 @@ lodash@4.17.4:
 lodash@^3.10.1, lodash@^3.2.0, lodash@^3.3.1, lodash@^3.8.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-
-lodash@^4, lodash@^4.0.0, lodash@^4.0.1, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.5.1, lodash@~4.17.4:
-  version "4.17.5"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
 log-symbols@^1.0.2:
   version "1.0.2"
